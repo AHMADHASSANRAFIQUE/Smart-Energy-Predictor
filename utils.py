@@ -1,4 +1,5 @@
 import requests
+import os
 from datetime import datetime
 
 currency_symbol = "Rs"
@@ -16,8 +17,8 @@ appliance_options = {
 }
 
 def fetch_weather_forecast(city):
-    try:
-        api_key = "ad34ba025d81506a2eb3f34708f1f1d4"
+    try:        
+        api_key = os.environ.get("OPENWEATHER_API_KEY")
         url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
         response = requests.get(url)
         data = response.json()
